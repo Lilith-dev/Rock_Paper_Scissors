@@ -247,3 +247,51 @@ namespace Homeworks
                         {
                             Console.WriteLine("Неправильний ввід. Спробуй ще раз.");
                         }
+                    }
+                    string[] displayChoice = new string[3]
+                    {
+                        """
+                            _______
+                        ---'   ____)
+                                (_____)
+                                (_____)
+                                (____)
+                        ---.__(___)
+                        """,
+                        """
+                            _______
+                        ---'   ____)____
+                                    ______)
+                                __________)
+                                (____)
+                        ---.__(___)
+                        """,
+                        """
+                            _______
+                        ---'    ____)____
+                                    ______)
+                                    _______)
+                                    _______)
+                        ---.__________)
+                        """
+                    };
+                    // AI select weapon
+                    aiWeaponChoice = random.Next(1, 4);
+                    if (aiWeaponChoice == (int)gameChoice.Paper)
+                    {
+                        Console.WriteLine($"ШІ вибрав: {aiWeaponChoice}. папір");
+                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
+                    }
+
+                    if (aiWeaponChoice == (int)gameChoice.Rock)
+                    {
+                        Console.WriteLine($"ШІ вибрав: {aiWeaponChoice}. камінь");
+                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
+                        
+                    }
+                    if (aiWeaponChoice == (int)gameChoice.Scissors)
+                    {
+                        Console.WriteLine($"ШІ вибрав: {aiWeaponChoice}. ножиці");
+                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
+                    }
+
