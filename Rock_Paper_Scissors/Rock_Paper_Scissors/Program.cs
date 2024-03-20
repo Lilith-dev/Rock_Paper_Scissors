@@ -295,3 +295,52 @@ namespace Homeworks
                         writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
                     }
 
+                    // Determine the winner
+                    if (weaponChoice == aiWeaponChoice)
+                    {
+                        Console.WriteLine("Поки що нічия, але ШІ повстане колись..");
+                    }
+                    else if ((weaponChoice == 1 && aiWeaponChoice == 2) ||
+                             (weaponChoice == 2 && aiWeaponChoice == 3) ||
+                             (weaponChoice == 3 && aiWeaponChoice == 1))
+                    {
+                        Console.WriteLine("Щож, сьогодні ти переміг!");
+                        playerWinsCount++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("ШІ переміг, судний день вже близько.");
+                    }
+
+                    roundsPlayed++;
+
+                }
+
+                if (playerWinsCount > 1)
+                {
+                    Console.WriteLine("Ти диви, переміг і не забарився!");
+                    victories++;
+                }
+                else
+                {
+                    Console.WriteLine("Player loose fight! - Ha-ha");
+                    Console.WriteLine(loosePhrases[random.Next(0, loosePhrases.Length)]);
+                }
+
+                isFirstFight = false;
+            }
+
+
+            return;
+        }
+        
+        public static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Homework_Rock_Paper_Scissors();
+
+
+
+        }
+    }
+}
