@@ -114,14 +114,6 @@ namespace Homeworks
         public static void Homework_Rock_Paper_Scissors()
         {
 
-            writeColorLine(15, ConsoleColor.Green, true, "██");
-            writeColorLine(5, ConsoleColor.Green, false, "=");
-            writeColorLine(5, ConsoleColor.Green, false, "@");
-            writeColorLine(5, ConsoleColor.Green, true, "██");
-            writeColorLine(16, ConsoleColor.Blue);
-            writeColorLine(17, ConsoleColor.Yellow);
-            writeColorLine(18, ConsoleColor.Cyan);
-
             string nickname = "";
             int age = 0;
             int roundsPlayed = 0;
@@ -136,7 +128,14 @@ namespace Homeworks
                 "Щож, це мабуть найкраще, що ти зміг"
             };
 
-            writeBorderedText("Привіт! Вітаю тебе у грі 'Камінь, Ножиці, Папір!", ConsoleColor.Red);
+            string[] winPhrases = new string[3]
+           {
+                "Красава, розірвав цю падлюку!",
+                "Ти диви, переміг і не забарився!",
+                "Дурний переміг ще дурнішого! Це жарт, жарт заспокойся)"
+           };
+
+            writeBorderedText("Привіт! Вітаю тебе у грі 'Камінь, Ножиці, Папір!", ConsoleColor.Blue);
             while (string.IsNullOrWhiteSpace(nickname))
             {
                 Console.Write("Введи будь-ласка свій супер крутецький нікнейм: ");
@@ -145,6 +144,8 @@ namespace Homeworks
                 if (!string.IsNullOrWhiteSpace(nickname))
                 {
                     Console.WriteLine($"Нічого собі, крутий нік!");
+                    Console.WriteLine();
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -170,6 +171,7 @@ namespace Homeworks
             if (age >= 12)
             {
                 Console.WriteLine("Та дорослий, дорослий, добре)");
+               
             }
             else
             {
@@ -187,12 +189,13 @@ namespace Homeworks
             {
                 yesNoChoice = "";
 
-                Console.WriteLine("Тааак що тут у нас:");
+                Console.Write("\n\n");
+                Console.WriteLine("Подивимость, що тут у нас:");
                 writeBorderedText(
                     $"Нікнейм: {nickname}\n" +
                     $"Вік: {age}\n" +
                     $"Зіграно раундів: {roundsPlayed}\n" +
-                    $"Перемог: {victories}", ConsoleColor.Red);
+                    $"Перемог: {victories}", ConsoleColor.Blue);
 
 
                 while (yesNoChoice.ToLower() != yesChoice && yesNoChoice.ToLower() != noChoice)
@@ -218,8 +221,8 @@ namespace Homeworks
 
                 if (isFirstFight)
                 {
-                    Console.WriteLine("Пам'ятай правила:");
-                    writeBorderedText("Папір б'є камінь, але програє ножицям\nНожиці б'ють папір, але програють камінню\nКаміння б'є ножиці, але програє паперу", ConsoleColor.Yellow);
+                    Console.WriteLine("Пам'ятай правила, як своє ім'я:");
+                    writeBorderedText("Папір б'є камінь, але програє ножицям\nНожиці б'ють папір, але програють камінню\nКаміння б'є ножиці, але програє паперу", ConsoleColor.Red);
                 }
 
                 // rounds 1, 2, 3
@@ -230,17 +233,17 @@ namespace Homeworks
 
                 for (int roundNumber = 0; roundNumber < countRoundsPerFight; roundNumber++)
                 {
-                    Console.WriteLine($"Start round #{roundNumber + 1}");
+                    Console.WriteLine($"Ррраунд #{roundNumber + 1}");
 
                     weaponChoice = 0;
-                    writeBorderedText("Вибери тип зброї:\n1. Камінь\n2. Ножиці\n3. Папір", ConsoleColor.Green);
+                    writeBorderedText("Вибери тип зброї:\n1. Камінь\n2. Ножиці\n3. Папір", ConsoleColor.Blue);
          
 
                     weaponChoiceInput = "";
                     while (!int.TryParse(weaponChoiceInput, out weaponChoice) || weaponChoice > 3 || weaponChoice < 1)
                     {
 
-                        Console.Write("Твій вибір: ");
+                        Console.Write("Твій вибір (1-3): ");
                         weaponChoiceInput = Console.ReadLine();
 
                         if (!int.TryParse(weaponChoiceInput, out weaponChoice) || weaponChoice > 3 || weaponChoice < 1)
@@ -279,20 +282,20 @@ namespace Homeworks
                     aiWeaponChoice = random.Next(1, 4);
                     if (aiWeaponChoice == (int)gameChoice.Paper)
                     {
-                        Console.WriteLine($"ШІ вибрав: {aiWeaponChoice}. папір");
-                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
+                        Console.WriteLine("ШІ вибрав: папір");
+                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Cyan);
                     }
 
                     if (aiWeaponChoice == (int)gameChoice.Rock)
                     {
-                        Console.WriteLine($"ШІ вибрав: {aiWeaponChoice}. камінь");
-                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
+                        Console.WriteLine("ШІ вибрав: камінь");
+                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Cyan);
                         
                     }
                     if (aiWeaponChoice == (int)gameChoice.Scissors)
                     {
-                        Console.WriteLine($"ШІ вибрав: {aiWeaponChoice}. ножиці");
-                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Green);
+                        Console.WriteLine("ШІ вибрав: ножиці");
+                        writeBorderedText(concatDisplayChoices(displayChoice[weaponChoice - 1], displayChoice[aiWeaponChoice - 1]), ConsoleColor.Cyan);
                     }
 
                     // Determine the winner
@@ -304,7 +307,7 @@ namespace Homeworks
                              (weaponChoice == 2 && aiWeaponChoice == 3) ||
                              (weaponChoice == 3 && aiWeaponChoice == 1))
                     {
-                        Console.WriteLine("Щож, сьогодні ти переміг!");
+                        Console.WriteLine("Щож, наразі ти переміг!");
                         playerWinsCount++;
                     }
                     else
@@ -318,12 +321,11 @@ namespace Homeworks
 
                 if (playerWinsCount > 1)
                 {
-                    Console.WriteLine("Ти диви, переміг і не забарився!");
+                  Console.WriteLine(winPhrases[random.Next(0, winPhrases.Length)]);
                     victories++;
                 }
                 else
                 {
-                    Console.WriteLine("Player loose fight! - Ha-ha");
                     Console.WriteLine(loosePhrases[random.Next(0, loosePhrases.Length)]);
                 }
 
