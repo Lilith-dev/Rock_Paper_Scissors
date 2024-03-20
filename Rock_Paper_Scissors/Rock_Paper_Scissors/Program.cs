@@ -193,3 +193,57 @@ namespace Homeworks
                     $"Вік: {age}\n" +
                     $"Зіграно раундів: {roundsPlayed}\n" +
                     $"Перемог: {victories}", ConsoleColor.Red);
+
+
+                while (yesNoChoice.ToLower() != yesChoice && yesNoChoice.ToLower() != noChoice)
+                {
+
+                    Console.Write("Ти готовий до бою? (Yes/No): ");
+                    yesNoChoice = Console.ReadLine();
+
+                    if (yesNoChoice.ToLower() != yesChoice && yesNoChoice.ToLower() != noChoice)
+                    {
+                        Console.WriteLine("Неправильний ввід. Спробуй ввести ще раз.");
+                        Console.WriteLine($"user_input: {yesNoChoice}");
+                    }
+
+                }
+
+                if (yesNoChoice.ToLower() == noChoice)
+                {
+                    Console.WriteLine($"Бувай друже, {nickname}!");
+                    break;
+
+                }
+
+                if (isFirstFight)
+                {
+                    Console.WriteLine("Пам'ятай правила:");
+                    writeBorderedText("Папір б'є камінь, але програє ножицям\nНожиці б'ють папір, але програють камінню\nКаміння б'є ножиці, але програє паперу", ConsoleColor.Yellow);
+                }
+
+                // rounds 1, 2, 3
+                int weaponChoice = 0;
+                string weaponChoiceInput = "";
+                int aiWeaponChoice = 0;
+                int playerWinsCount = 0;
+
+                for (int roundNumber = 0; roundNumber < countRoundsPerFight; roundNumber++)
+                {
+                    Console.WriteLine($"Start round #{roundNumber + 1}");
+
+                    weaponChoice = 0;
+                    writeBorderedText("Вибери тип зброї:\n1. Камінь\n2. Ножиці\n3. Папір", ConsoleColor.Green);
+         
+
+                    weaponChoiceInput = "";
+                    while (!int.TryParse(weaponChoiceInput, out weaponChoice) || weaponChoice > 3 || weaponChoice < 1)
+                    {
+
+                        Console.Write("Твій вибір: ");
+                        weaponChoiceInput = Console.ReadLine();
+
+                        if (!int.TryParse(weaponChoiceInput, out weaponChoice) || weaponChoice > 3 || weaponChoice < 1)
+                        {
+                            Console.WriteLine("Неправильний ввід. Спробуй ще раз.");
+                        }
